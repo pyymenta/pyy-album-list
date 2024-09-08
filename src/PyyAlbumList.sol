@@ -55,7 +55,11 @@ contract PyyAlbumList {
         albuns.pop();
     }
 
-     function getAlbums() public view returns (Album[] memory) {
+    function getAlbums() public view returns (Album[] memory) {
         return albuns;
+    }
+
+    function extendDeadline(uint256 _daysToAdd) public onlyOwner {
+        deadline += _daysToAdd * 1 days;
     }
 }
