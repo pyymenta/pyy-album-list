@@ -10,7 +10,7 @@ contract PyyAlbumList {
     struct Album {
         string name;
         string annotations;
-        string review;
+        uint256 review;
         string frontImage;
         string backImage;
         string playlistUrl;
