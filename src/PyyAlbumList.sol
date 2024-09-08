@@ -18,6 +18,11 @@ contract PyyAlbumList {
 
     Album[] public albuns;
 
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the owner");
+        _;
+    }
+
     constructor(
         address _owner,
         string memory _name,
@@ -37,13 +42,13 @@ contract PyyAlbumList {
         string memory _frontImage,
         string memory _backImage,
         string memory _albumUrl
-    ) public {
+    ) public onlyOwner {
         require(_review >= 0 && _review <= 10, "Review value should be more or equal than 0 and less or equal than 10");
 
         albuns.push(Album(_name, _annotations, _review, _frontImage, _backImage, _albumUrl));
     }
 
-    function removeAlbum(uint256 _index) public {
+    function removeAlbum(uint256 _index) public onlyOwner {
         require(_index < albuns.length, "Album does not exist.");
 
         albuns[_index] = albuns[albuns.length -1];
