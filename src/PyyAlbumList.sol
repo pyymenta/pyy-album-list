@@ -13,7 +13,7 @@ contract PyyAlbumList {
         uint256 review;
         string frontImage;
         string backImage;
-        string playlistUrl;
+        string albumUrl;
     }
 
     constructor() {
