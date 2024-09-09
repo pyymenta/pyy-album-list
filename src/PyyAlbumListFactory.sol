@@ -45,4 +45,12 @@ contract PyyAlbumListFactory {
         albumLists.push(albumList);
         userAlbumLists[msg.sender].push(albumList);
     }
+
+    function getAlbumListsByUser(address _userAddress) external view returns (AlbumList[] memory) {
+        return userAlbumLists[_userAddress];
+    }
+
+    function getAllAlbumLists() external view returns (AlbumList[] memory) {
+        return albumLists;
+    }
 }
