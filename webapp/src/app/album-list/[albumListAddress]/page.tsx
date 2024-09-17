@@ -34,6 +34,8 @@ export default function AlbumListPage() {
   });
 
   const deadlineDate = new Date(parseInt(deadline?.toString() as string) * 1000);
+  const deadlineFinished = deadlineDate < new Date();
+
 
   return (
     <div className="mx-auto max-w-7xl px-2 mt-4 sm:px-6 lg:px-8">
