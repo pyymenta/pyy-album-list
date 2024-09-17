@@ -36,6 +36,17 @@ export default function AlbumListPage() {
   const deadlineDate = new Date(parseInt(deadline?.toString() as string) * 1000);
   const deadlineFinished = deadlineDate < new Date();
 
+  const { data: albums, isLoading: isLoadingAlbums } = useReadContract({
+    contract,
+    method: "function getAlbums() view returns (string name, string annotations, uint256 review, string frontImage, string backImage, string albumUrl)",
+    params: []
+  });
+
+  const { data: owner, isLoading: isLoadingOwner } = useReadContract({
+    contract,
+    method: "function owner() view returns (address)",
+    params: []
+  });
 
   return (
     <div className="mx-auto max-w-7xl px-2 mt-4 sm:px-6 lg:px-8">
