@@ -38,7 +38,7 @@ export default function AlbumListPage() {
 
   const { data: albums, isLoading: isLoadingAlbums } = useReadContract({
     contract,
-    method: "function getAlbums() view returns (string name, string annotations, uint256 review, string frontImage, string backImage, string albumUrl)",
+    method: "function getAlbums() view returns ((string name, string annotations, uint256 review, string frontImage, string backImage, string albumUrl)[])",
     params: []
   });
 
@@ -66,6 +66,24 @@ export default function AlbumListPage() {
             It finishes in {deadlineDate.toDateString()}
           </p>
         )}
+      </div>
+      <div>
+        <p className="text-lg font-semibold">Albuns</p>
+        <div className="grid grid-cols-3 gap-4">
+          {isLoadingAlbums ? (
+            <p>Loading...</p>
+          ) : (
+            albums && albums.length > 0 ? (
+              albums.map((album, i) => (
+                <div key={i}>
+                  <p>{album.name}</p>
+                </div>
+              ))
+            ) : (
+              <p>No albums in this list</p>
+            )
+          )}
+        </div>
       </div>
     </div>
   )
