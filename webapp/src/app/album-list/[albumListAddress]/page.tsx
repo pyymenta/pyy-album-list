@@ -5,6 +5,7 @@ import { polygonAmoy } from "thirdweb/chains";
 import { client } from "../../client";
 import { useReadContract } from "thirdweb/react";
 import { getContract } from "thirdweb";
+import AlbumCard from '@/components/AlbumCard';
 
 export default function AlbumListPage() {
   const { albumListAddress } = useParams();
@@ -68,16 +69,14 @@ export default function AlbumListPage() {
         )}
       </div>
       <div>
-        <p className="text-lg font-semibold">Albuns</p>
+        <p className="text-lg font-semibold mb-4">Albuns</p>
         <div className="grid grid-cols-3 gap-4">
           {isLoadingAlbums ? (
             <p>Loading...</p>
           ) : (
             albums && albums.length > 0 ? (
               albums.map((album, i) => (
-                <div key={i}>
-                  <p>{album.name}</p>
-                </div>
+                <AlbumCard album={album} key={i} />
               ))
             ) : (
               <p>No albums in this list</p>
