@@ -1,16 +1,10 @@
 import Image from "next/image";
 import { prepareContractCall, ThirdwebContract } from "thirdweb";
 import { TransactionButton } from "thirdweb/react";
+import { Album } from "@/types/Album";
 
 interface Props {
-  album: {
-    name: string;
-    annotations: string;
-    review: bigint;
-    frontImage: string;
-    backImage: string;
-    albumUrl: string;
-  }
+  album: Album;
   editMode: boolean;
   contract: ThirdwebContract;
   index: number;
