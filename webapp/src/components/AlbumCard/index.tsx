@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { prepareContractCall, ThirdwebContract } from "thirdweb";
+import { TransactionButton } from "thirdweb/react";
 
 interface Props {
   album: {
@@ -9,10 +11,13 @@ interface Props {
     backImage: string;
     albumUrl: string;
   }
+  editMode: boolean;
+  contract: ThirdwebContract;
+  index: number;
 }
 
 const AlbumCard = (props: Props) => {
-  const { album } = props;
+  const { album, editMode, contract, index } = props;
   const {
     name,
     annotations,
@@ -48,6 +53,25 @@ const AlbumCard = (props: Props) => {
           )))}
         </div>
       </div>
+      {editMode && (
+        <TransactionButton
+            transaction={() => prepareContractCall({
+              contract,
+              method: "function removeAlbum(uint256 _index)",
+              params: [BigInt(index)]
+            })}
+            onError={(error) => alert(`Error: ${error.message}`)}
+            onTransactionConfirmed={async () => alert("Removed successfully!")}
+            style={{
+                marginTop: "1rem",
+                backgroundColor: "red",
+                color: "white",
+                padding: "0.5rem 1rem",
+                borderRadius: "0.375rem",
+                cursor: "pointer",
+            }}
+        >Remove</TransactionButton>
+      )}
     </div>
   );
 };

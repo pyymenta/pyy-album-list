@@ -66,7 +66,7 @@ export default function AlbumListPage() {
               onClick={() => setEditMode((prevState) => !prevState)}
               className="px-4 py-2 bg-green-500 text-white rounded-md"
             >
-              {editMode ? "Done" : "Edit List"} 
+              {editMode ? "Done" : "Edit List"}
             </button>
           </div>
         )}
@@ -91,7 +91,13 @@ export default function AlbumListPage() {
           ) : (
             albums && albums.length > 0 ? (
               albums.map((album, i) => (
-                <AlbumCard album={album} key={i} />
+                <AlbumCard
+                  album={album}
+                  key={i}
+                  editMode={editMode}
+                  contract={contract}
+                  index={i}
+                />
               ))
             ) : (
               <p>No albums in this list</p>
@@ -109,7 +115,7 @@ export default function AlbumListPage() {
         </div>
       </div>
       {
-        editModalOpened && (<AddAlbumModal 
+        editModalOpened && (<AddAlbumModal
           contract={contract}
           setIsModalOpened={setEditModalOpened}
         />)
