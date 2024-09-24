@@ -8,12 +8,16 @@ import { useActiveAccount, useReadContract } from "thirdweb/react";
 import { getContract } from "thirdweb";
 import AlbumCard from '@/components/AlbumCard';
 import AddAlbumModal from "@/components/AddAlbumModal";
+import AlbumDetailsModal from "@/components/AlbumDetailsModal";
+import { Album } from "@/types/Album";
 
 export default function AlbumListPage() {
   const { albumListAddress } = useParams();
   const account = useActiveAccount();
   const [editMode, setEditMode] = useState(false);
   const [editModalOpened, setEditModalOpened] = useState(false);
+  const [albumDetailsOpened, setAlbumDetailsOpened] = useState(false);
+  const [selectedAlbum, setSelectedAlbum] = useState<Album>()
 
   const contract = getContract({
     client,
@@ -97,6 +101,10 @@ export default function AlbumListPage() {
                   editMode={editMode}
                   contract={contract}
                   index={i}
+                  handleAlbumDetails={() => {
+                    setSelectedAlbum(album);
+                    setAlbumDetailsOpened(true);
+                  }}
                 />
               ))
             ) : (
@@ -118,6 +126,12 @@ export default function AlbumListPage() {
         editModalOpened && (<AddAlbumModal
           contract={contract}
           setIsModalOpened={setEditModalOpened}
+        />)
+      }
+      {
+        albumDetailsOpened && (<AlbumDetailsModal
+          album={selectedAlbum}
+          setIsModalOpened={setAlbumDetailsOpened}
         />)
       }
     </div>

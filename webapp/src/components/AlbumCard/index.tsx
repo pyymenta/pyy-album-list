@@ -8,10 +8,11 @@ interface Props {
   editMode: boolean;
   contract: ThirdwebContract;
   index: number;
+  handleAlbumDetails: () => void;
 }
 
 const AlbumCard = (props: Props) => {
-  const { album, editMode, contract, index } = props;
+  const { album, editMode, contract, index, handleAlbumDetails } = props;
   const {
     name,
     annotations,
@@ -47,6 +48,12 @@ const AlbumCard = (props: Props) => {
           )))}
         </div>
       </div>
+      <button
+        className="text-sm px-4 py-2 bg-blue-500 text-white rounded md mt-4"
+        onClick={handleAlbumDetails}
+      >
+        Details
+      </button>
       {editMode && (
         <TransactionButton
             transaction={() => prepareContractCall({
