@@ -62,18 +62,21 @@ export default function AlbumListPage() {
     <div className="mx-auto max-w-7xl px-2 mt-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center">
         {!isLoadingName && (
-          <h5 className="mb-2 text-2xl font-bold tracking-tight">{name}</h5>
+          <>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight">{name}</h5>
+            {owner === account?.address && (
+              <div className="flex flex-row">
+                <button
+                  onClick={() => setEditMode((prevState) => !prevState)}
+                  className="px-4 py-2 bg-green-500 text-white rounded-md"
+                >
+                  {editMode ? "Done" : "Edit List"}
+                </button>
+              </div>
+            )}
+          </>
         )}
-        {owner === account?.address && (
-          <div className="flex flex-row">
-            <button
-              onClick={() => setEditMode((prevState) => !prevState)}
-              className="px-4 py-2 bg-green-500 text-white rounded-md"
-            >
-              {editMode ? "Done" : "Edit List"}
-            </button>
-          </div>
-        )}
+
       </div>
       <div className="my-4">
         <p className="text-lg font-semibold">
