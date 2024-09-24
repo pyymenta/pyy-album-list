@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { polygonAmoy } from "thirdweb/chains";
 import { client } from "../../client";
-import { useReadContract } from "thirdweb/react";
+import { useActiveAccount, useReadContract } from "thirdweb/react";
 import { getContract } from "thirdweb";
 import AlbumCard from '@/components/AlbumCard';
 
 export default function AlbumListPage() {
   const { albumListAddress } = useParams();
+  const account = useActiveAccount();
+  const [editMode, setEditMode] = useState(false);
+  const [editModalOpened, setEditModalOpened] = useState(false);
 
   const contract = getContract({
     client,
@@ -55,6 +59,16 @@ export default function AlbumListPage() {
         {!isLoadingName && (
           <h5 className="mb-2 text-2xl font-bold tracking-tight">{name}</h5>
         )}
+        {owner === account?.address && (
+          <div className="flex flex-row">
+            <button
+              onClick={() => setEditMode((prevState) => !prevState)}
+              className="px-4 py-2 bg-green-500 text-white rounded-md"
+            >
+              {editMode ? "Done" : "Edit List"} 
+            </button>
+          </div>
+        )}
       </div>
       <div className="my-4">
         <p className="text-lg font-semibold">
@@ -82,6 +96,15 @@ export default function AlbumListPage() {
               <p>No albums in this list</p>
             )
           )}
+          {
+            editMode && (
+              <button className="max-w-sm flex flex-col text-center justify-center items-center font-semibold p-6 bg-green-500 text-white border border-green-200 rounded-lg shadow"
+                onClick={() => setEditModalOpened(prevState => !prevState)}
+              >
+                + Add new album to the list
+              </button>
+            )
+          }
         </div>
       </div>
     </div>
