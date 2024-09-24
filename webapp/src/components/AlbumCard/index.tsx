@@ -13,13 +13,12 @@ interface Props {
 
 const AlbumCard = (props: Props) => {
   const { album } = props;
-  const { 
+  const {
     name,
     annotations,
     frontImage,
     review,
   } = album;
-  console.log({ review: Number(review) })
 
   return (
     <div
@@ -28,7 +27,7 @@ const AlbumCard = (props: Props) => {
       <div>
         <div className="flex justify-between">
           <h5 className="mb-2 text-2xl font-bold tracking-tight">{name}</h5>
-          <Image 
+          <Image
             src={frontImage}
             width={48}
             height={48}
@@ -39,7 +38,7 @@ const AlbumCard = (props: Props) => {
 
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{annotations}</p>
         <div className="flex gap-2">
-          {(Array.from({ length: Number(review)}, (_, i) => (<Image 
+          {(Array.from({ length: Number(review)}, (_, i) => (<Image
             src="/star.svg"
             key={i}
             alt="Review"
