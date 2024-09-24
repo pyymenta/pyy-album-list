@@ -7,6 +7,7 @@ import { client } from "../../client";
 import { useActiveAccount, useReadContract } from "thirdweb/react";
 import { getContract } from "thirdweb";
 import AlbumCard from '@/components/AlbumCard';
+import AddAlbumModal from "@/components/AddAlbumModal";
 
 export default function AlbumListPage() {
   const { albumListAddress } = useParams();
@@ -107,6 +108,12 @@ export default function AlbumListPage() {
           }
         </div>
       </div>
+      {
+        editModalOpened && (<AddAlbumModal 
+          contract={contract}
+          setIsModalOpened={setEditModalOpened}
+        />)
+      }
     </div>
   )
 }
