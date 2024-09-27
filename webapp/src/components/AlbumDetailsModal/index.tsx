@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { Album } from "@/types/Album";
+import Carousel from "../Carousel";
 
 type AlbumDetailsProps = {
   setIsModalOpened: (isOpen: boolean) => void;
@@ -10,7 +12,7 @@ const AlbumDetailsModal = (props: AlbumDetailsProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center backdrop-blur-md">
-      <div className="w-1/2 bg-slate-100 p6 rounded-md p-4">
+      <div className="w-1/2 max-h-[500px] box-border bg-slate-100 p6 rounded-xl p-4 overflow-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">
             Album details
@@ -21,6 +23,31 @@ const AlbumDetailsModal = (props: AlbumDetailsProps) => {
           >
             Close
           </button>
+        </div>
+        <div className="flex flex-col">
+          { album?.frontImage && album?.backImage && <Carousel images={[album?.frontImage, album?.backImage]} /> }
+        </div>
+
+        <div className="flex flex-col mt-5">
+          <h2 className="mb-2 text-2xl font-bold tracking-tight">{album?.name}</h2>
+          <p className="text-lg font-light">
+            {album?.annotations}
+          </p>
+          <p className="text-lg font-semibold mt-4">
+            Review
+          </p>
+          <div className="flex gap-2 mt-3">
+          {(Array.from({ length: Number(album?.review || 0)}, (_, i) => (<Image
+            src="/star.svg"
+            key={i}
+            alt="Review"
+            width={20}
+            height={20}
+          />
+          )))}
+          </div>
+          <h3 className="mt-4 mb-4 text-xl font-semibold tracking-tight">Listen</h3>
+          <iframe src={album?.albumUrl} width="500" height="380" frameBorder="0" allowTransparency={true} allow="encrypted-media"></iframe>
         </div>
       </div>
     </div>
