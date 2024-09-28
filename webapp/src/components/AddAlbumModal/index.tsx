@@ -4,6 +4,7 @@ import { lightTheme, TransactionButton } from "thirdweb/react";
 
 const INITIAL_STATE = {
   name: '',
+  artist: '',
   annotations: '',
   review: 0,
   frontImage: '',
@@ -52,7 +53,17 @@ const AddAlbumModal = (props: AddModalProps) => {
             placeholder="Album name"
             className="mb-4 px-4 py-2 bg-slate-200 rounded-md"
           />
-          <label htmlFor="annotations">Album</label>
+          <label htmlFor="artist">Artist</label>
+          <input
+            id="artist"
+            name="artist" 
+            type="text"
+            value={fields.artist}
+            onChange={onChangeField}
+            placeholder="Album artist"
+            className="mb-4 px-4 py-2 bg-slate-200 rounded-md"
+          />
+          <label htmlFor="annotations">Annotations</label>
           <textarea
             id="annotations"
             name="annotations" 
@@ -107,14 +118,15 @@ const AddAlbumModal = (props: AddModalProps) => {
           <TransactionButton
             transaction={() => prepareContractCall({
               contract,
-              method: "function addAlbum(string _name, string _annotations, uint256 _review, string _frontImage, string _backImage, string _albumUrl)",
+              method: "function addAlbum(string _name, string _artist, string _annotations, uint256 _review, string _frontImage, string _backImage, string _albumUrl)",
               params: [fields.name,
+                fields.artist,
                 fields.annotations,
                 BigInt(fields.review),
                 fields.frontImage,
                 fields.backImage,
                 fields.albumUrl
-              ]
+              ],
             })}
             onTransactionConfirmed={async () => {
               alert("Album added successfully");

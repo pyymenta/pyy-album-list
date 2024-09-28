@@ -48,7 +48,7 @@ export default function AlbumListPage() {
 
   const { data: albums, isLoading: isLoadingAlbums } = useReadContract({
     contract,
-    method: "function getAlbums() view returns ((string name, string annotations, uint256 review, string frontImage, string backImage, string albumUrl)[])",
+    method: "function getAlbums() view returns ((string name, string artist, string annotations, uint256 review, string frontImage, string backImage, string albumUrl)[])",
     params: []
   });
 

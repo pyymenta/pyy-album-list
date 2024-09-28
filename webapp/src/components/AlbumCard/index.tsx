@@ -15,6 +15,7 @@ const AlbumCard = (props: Props) => {
   const { album, editMode, contract, index, handleAlbumDetails } = props;
   const {
     name,
+    artist,
     annotations,
     frontImage,
     review,
@@ -26,7 +27,7 @@ const AlbumCard = (props: Props) => {
     >
       <div>
         <div className="flex justify-between">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight">{name}</h5>
+          <h5 className="mb-1 text-2xl font-bold tracking-tight">{name}</h5>
           <Image
             src={frontImage}
             width={48}
@@ -35,6 +36,8 @@ const AlbumCard = (props: Props) => {
             className="rounded-full"
           />
         </div>
+
+        <span className="mb-4 text-base font-medium inline-block tracking-tight">By: {artist}</span>
 
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{annotations}</p>
         <div className="flex gap-2">

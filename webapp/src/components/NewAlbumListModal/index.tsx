@@ -42,7 +42,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
           fields.durationDays,
         ],
         publisher: "0xF274f591186C0254B725Ae56c3030d752F5D8FCA",
-        version: "1.0.0",
+        version: "1.0.1",
       });
 
       alert('Album list created successfully!');
