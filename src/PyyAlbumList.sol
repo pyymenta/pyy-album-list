@@ -9,6 +9,7 @@ contract PyyAlbumList {
 
     struct Album {
         string name;
+        string artist;
         string annotations;
         uint256 review;
         string frontImage;
@@ -37,6 +38,7 @@ contract PyyAlbumList {
 
     function addAlbum(
         string memory _name,
+        string memory _artist,
         string memory _annotations,
         uint256 _review,
         string memory _frontImage,
@@ -45,7 +47,7 @@ contract PyyAlbumList {
     ) public onlyOwner {
         require(_review >= 0 && _review <= 10, "Review value should be more or equal than 0 and less or equal than 10");
 
-        albuns.push(Album(_name, _annotations, _review, _frontImage, _backImage, _albumUrl));
+        albuns.push(Album(_name, _artist, _annotations, _review, _frontImage, _backImage, _albumUrl));
     }
 
     function removeAlbum(uint256 _index) public onlyOwner {
