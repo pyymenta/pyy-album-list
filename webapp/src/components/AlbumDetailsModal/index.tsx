@@ -12,7 +12,7 @@ const AlbumDetailsModal = (props: AlbumDetailsProps) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center backdrop-blur-md">
-      <div className="w-1/2 max-h-[500px] box-border bg-slate-100 p6 rounded-xl p-4 overflow-auto">
+      <div className="sm:w-full md:w-full lg:w-1/2 sm:m-3 md:m-3 max-h-[500px] box-border bg-slate-100 p6 rounded-xl p-4 overflow-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">
             Album details
