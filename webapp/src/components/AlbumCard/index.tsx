@@ -11,6 +11,8 @@ interface Props {
   handleAlbumDetails: () => void;
 }
 
+const DESCRIPTION_MAX_CHAR = 64;
+
 const AlbumCard = (props: Props) => {
   const { album, editMode, contract, index, handleAlbumDetails } = props;
   const {
@@ -39,7 +41,7 @@ const AlbumCard = (props: Props) => {
 
         <span className="mb-4 text-base font-medium inline-block tracking-tight">By: {artist}</span>
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{annotations}</p>
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{annotations.substring(0, DESCRIPTION_MAX_CHAR) + '...'}</p>
         <div className="flex gap-2">
           {(Array.from({ length: Number(review)}, (_, i) => (<Image
             src="/star.svg"
