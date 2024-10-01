@@ -6,8 +6,7 @@ import { client } from "./client";
 import { useReadContract } from "thirdweb/react";
 import Link from "next/link";
 import AlbumListCard from "@/components/AlbumListCard";
-
-const ALBUNS_LIST_FACTORY_ADDRESS = "0x009986155E8b9b0e78120C426Eb7B8f87E0EE3D5";
+import { ALBUNS_LIST_FACTORY_ADDRESS } from "@/contants";
 
 export default function Home() {
   const contract = getContract({

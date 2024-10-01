@@ -7,8 +7,8 @@ import { useActiveAccount, useReadContract } from "thirdweb/react";
 import { client } from "../../client";
 import AlbumListCard from "@/components/AlbumListCard";
 import NewAlbumListModal from "@/components/NewAlbumListModal";
+import { ALBUNS_LIST_FACTORY_ADDRESS } from "@/contants";
 
-const ALBUNS_LIST_FACTORY_ADDRESS = "0x009986155E8b9b0e78120C426Eb7B8f87E0EE3D5";
 
 export default function Dashboard() {
   const account = useActiveAccount();
