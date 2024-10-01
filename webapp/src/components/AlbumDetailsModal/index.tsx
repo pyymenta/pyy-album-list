@@ -47,7 +47,7 @@ const AlbumDetailsModal = (props: AlbumDetailsProps) => {
           )))}
           </div>
           <h3 className="mt-4 mb-4 text-xl font-semibold tracking-tight">Listen</h3>
-          <iframe src={album?.albumUrl} width="500" height="380" frameBorder="0" allowTransparency={true} allow="encrypted-media"></iframe>
+          <iframe style={{ borderRadius: '12px'}} src="https://open.spotify.com/embed/album/7o4UsmV37Sg5It2Eb7vHzu?utm_source=generator" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </div>
     </div>
