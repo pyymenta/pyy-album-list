@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 
 type NewListModalProps = {
   setIsModalOpened: (isOpen: boolean) => void;
+  refetchAlbumsList: () => void;
 };
 
 const NewAlbumListModal = (props: NewListModalProps) => {
@@ -51,6 +52,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
     } finally {
       setIsDeployingContract(false);
       setIsModalOpened(false);
+      props.refetchAlbumsList();
     }
   };
 
@@ -61,7 +63,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
           <h2 className="text-lg font-semibold">
             New album list
           </h2>
-          <button 
+          <button
             className="text-sm px-4 py-2 bg-green-600 text-white rounded md"
             onClick={() => setIsModalOpened(false)}
           >
@@ -72,7 +74,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
           <label htmlFor="name">Name</label>
           <input
             id="name"
-            name="name" 
+            name="name"
             type="text"
             value={fields.name}
             onChange={onChangeField}
@@ -82,7 +84,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
-            name="description" 
+            name="description"
             value={fields.description}
             onChange={onChangeField}
             placeholder="list description"
@@ -91,7 +93,7 @@ const NewAlbumListModal = (props: NewListModalProps) => {
           <label htmlFor="durationDays">Duration days</label>
           <input
             id="durationDays"
-            name="durationDays" 
+            name="durationDays"
             type="number"
             min={1}
             value={fields.durationDays}
@@ -100,10 +102,10 @@ const NewAlbumListModal = (props: NewListModalProps) => {
             className="mb-4 px-4 py-2 bg-slate-200 rounded-md"
           />
 
-          <button 
+          <button
             className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md"
             onClick={handleContractDeploy}
-            disabled={isDeployingContract}  
+            disabled={isDeployingContract}
           >
             {isDeployingContract ? "Creating album list..." : "Create album list"}
           </button>

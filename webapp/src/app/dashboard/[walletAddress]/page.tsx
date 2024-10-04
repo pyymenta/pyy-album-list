@@ -20,7 +20,7 @@ export default function Dashboard() {
     address: ALBUNS_LIST_FACTORY_ADDRESS,
   });
 
-  const { data: albunsLists, isPending } = useReadContract({
+  const { data: albunsLists, isPending, refetch } = useReadContract({
     contract,
     method: "function getAlbumListsByUser(address _userAddress) view returns ((address albumListAddress, address owner, string name, string description, uint256 createAt)[])",
     params: [account?.address as string]
@@ -59,8 +59,9 @@ export default function Dashboard() {
       </div>
 
       {createListModalOpened && (
-        <NewAlbumListModal 
+        <NewAlbumListModal
           setIsModalOpened={setCreateListModalOpened}
+          refetchAlbumsList={refetch}
         />
       )}
     </main>
