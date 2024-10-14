@@ -1,14 +1,33 @@
+# Pyy Album List
+
+Descentralized Album Sharing APP.
+
+Made with:
+
+- Solidity
+- Polygon PoS testnet - Amoy
+- NextJS
+- Thirdweb SDK
+
+## Demo
+
+![demo-album-list](https://github.com/user-attachments/assets/58bd8680-f5d6-45c7-8234-6822271641e9)
+
 ## Getting Started
 
-Create a project using this example:
+Install dependencies:
 
 ```bash
-npx thirdweb create --contract --template forge-starter
+npm i
+# or
+yarn
 ```
 
-You can start editing the page by modifying `contracts/Contract.sol`.
+
+You can start editing the page by modifying `src/PyyAlbumList.sol` or `src/PyyAlbumListFactory.sol`.
 
 To add functionality to your contracts, you can use the `@thirdweb-dev/contracts` package which provides base contracts and extensions to inherit. The package is already installed with this project. Head to our [Contracts Extensions Docs](https://portal.thirdweb.com/thirdweb-deploy/contract-extensions) to learn more.
+
 
 ## Building the project
 
@@ -42,6 +61,8 @@ npm run release
 yarn release
 ```
 
-## Join our Discord!
+## Join thirdweb discord!
 
 For any questions, suggestions, join our discord at [https://discord.gg/thirdweb](https://discord.gg/thirdweb).
+
+Powered by Thirdweb and NextJS!
